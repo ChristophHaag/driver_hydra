@@ -15,7 +15,11 @@
 #pragma comment(lib, "winmm.lib")
 #endif
 
+#ifdef _WIN32
 #define HMD_DLL_EXPORT extern "C" __declspec( dllexport )
+#else
+#define HMD_DLL_EXPORT extern "C" //TODO
+#endif
 
 CServerDriver_Hydra g_ServerTrackedDeviceProvider;
 CClientDriver_Hydra g_ClientTrackedDeviceProvider;
@@ -359,7 +363,7 @@ void CServerDriver_Hydra::LaunchHydraMonitor( const char * pchDriverInstallDir )
 #elif defined( _WIN32 )
 	ss << "win32";
 #else
-#error Do not know how to launch hydra_monitor
+#warning Do not know how to launch hydra_monitor
 #endif
 	DriverLog( "hydra_monitor path: %s\n", ss.str().c_str() );
 
@@ -370,7 +374,7 @@ void CServerDriver_Hydra::LaunchHydraMonitor( const char * pchDriverInstallDir )
 	BOOL okay = CreateProcessA( (ss.str() + "\\hydra_monitor.exe").c_str(), NULL, NULL, NULL, FALSE, 0, NULL, ss.str().c_str(), &sInfoProcess, &pInfoStartedProcess );
 	DriverLog( "start hydra_monitor okay: %d %08x\n", okay, GetLastError() );
 #else
-#error Do not know how to launch hydra_monitor
+#warning Do not know how to launch hydra_monitor
 #endif
 }
 
