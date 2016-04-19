@@ -5,7 +5,7 @@
 #include <string.h>
 #include <stdarg.h>
 #include <unistd.h>
-int Sleep(int sleepMs) { return usleep(sleepMs * 1000); }
+inline int Sleep(int sleepMs) { return usleep(sleepMs * 1000); }
 #define stricmp strcasecmp
 //#define vsprintf_s vsprintf
 #define sprintf_s snprintf

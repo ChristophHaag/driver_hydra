@@ -1,6 +1,6 @@
 find_package(Sixense REQUIRED)
 
-add_library (driver_hydra driver_hydra.cpp pch.cpp)
+add_library (driver_hydra SHARED driver_hydra.cpp pch.cpp)
 
 include_directories("${driver_hydra_SOURCE_DIR}/drivers/driver_hydra" ${SIXENSE_INCLUDE_DIRS})
 
